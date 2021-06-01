@@ -253,6 +253,10 @@ export interface Capabilities extends VendorExtensions {
      * Describes the current session’s user prompt handler. Defaults to the dismiss and notify state.
      */
     unhandledPromptBehavior?: string;
+    /**
+    * Indicates flag for switching to w3c mode <----> mjsonwp mode
+    */
+    isW3C?: boolean;
 }
 
 export interface W3CCapabilities {

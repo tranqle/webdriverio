@@ -39,13 +39,20 @@ export async function startWebDriverSession (params: Options): Promise<{ session
          */
         : [{ alwaysMatch: params.capabilities, firstMatch: [{}] }, params.capabilities]
 
+    let requestOptions
+    if (params.capabilities && (params.capabilities as W3CCapabilities).alwaysMatch.isW3C) {
+        requestOptions = {
+            capabilities: w3cCaps
+        }
+    } else {
+        requestOptions = {
+            desiredCapabilities: jsonwpCaps
+        }
+    }
     const sessionRequest = new WebDriverRequest(
         'POST',
         '/session',
-        {
-            capabilities: w3cCaps, // W3C compliant
-            desiredCapabilities: jsonwpCaps // JSONWP compliant
-        }
+        requestOptions
     )
 
     let response
