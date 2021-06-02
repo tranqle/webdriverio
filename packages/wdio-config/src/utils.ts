@@ -53,7 +53,7 @@ export function validateConfig<T>(defaults: Options.Definition<T>, options: T, k
         }
 
         if (typeof options['capabilities'] === 'undefined' && typeof options['desiredCapabilities']  === 'undefined') {
-            throw new Error('Neither capabilites nor desiredCapabilites has been defined');
+            throw new Error('Neither capabilites nor desiredCapabilites has been defined')
         }
 
         if (typeof options[name] === 'undefined' && expectedOption.default) {
