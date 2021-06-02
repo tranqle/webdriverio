@@ -109,7 +109,35 @@ export const WDIO_DEFAULTS: Options.Definition<Options.WebdriverIO & Options.Tes
 
             return true
         },
-        required: true
+        required: false
+    },
+    /**
+     * DesiredCapabilities support for mjsonwp session
+     */
+    desiredCapabilities: {
+        type: 'object',
+        validate: (param) => {
+            /**
+             * should be an object
+             */
+            if (!Array.isArray(param)) {
+                if (typeof param === 'object') {
+                    return true;
+                }
+                throw new Error('the "desiredCapabilities" options needs to be an object or a list of objects');
+            }
+            /**
+             * or an array of objects
+             */
+            for (const option of param) {
+                if (typeof option === 'object') { // Check does not work recursively
+                    continue;
+                }
+                throw new Error('expected every item of a list of desiredCapabilities to be of type object');
+            }
+            return true;
+        },
+        required: false
     },
     /**
      * Shorten navigateTo command calls by setting a base url

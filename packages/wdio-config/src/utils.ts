@@ -52,6 +52,10 @@ export function validateConfig<T>(defaults: Options.Definition<T>, options: T, k
             throw new Error(`Required option "${name}" is missing`)
         }
 
+        if (typeof options['capabilities'] === 'undefined' && typeof options['desiredCapabilities']  === 'undefined') {
+            throw new Error('Neither capabilites nor desiredCapabilites has been defined');
+        }
+
         if (typeof options[name] === 'undefined' && expectedOption.default) {
             params[name] = expectedOption.default
         }

@@ -53,23 +53,31 @@ export async function startWebDriverSession (params: Options.WebDriver): Promise
      * to check what style the user sent in so we know how to construct the
      * object for the other style
      */
-    const [w3cCaps, jsonwpCaps] = params.capabilities && (params.capabilities as Capabilities.W3CCapabilities).alwaysMatch
+    const w3cCaps = params.capabilities && (params.capabilities as Capabilities.W3CCapabilities).alwaysMatch
         /**
          * in case W3C compliant capabilities are provided
          */
-        ? [params.capabilities, (params.capabilities as Capabilities.W3CCapabilities).alwaysMatch]
+        ? params.capabilities
         /**
          * otherwise assume they passed in jsonwp-style caps (flat object)
          */
-        : [{ alwaysMatch: params.capabilities, firstMatch: [{}] }, params.capabilities]
+        : { alwaysMatch: params.capabilities, firstMatch: [{}] }
+
+    let requestOptions
+    if (params.desiredCapabilities) {
+        requestOptions = {
+            desiredCapabilities: params.desiredCapabilities // JSONWP compliant
+        }
+    } else {
+        requestOptions = {
+            capabilities: w3cCaps // W3C compliant
+        }
+    }
 
     const sessionRequest = new WebDriverRequest(
         'POST',
         '/session',
-        {
-            capabilities: w3cCaps, // W3C compliant
-            desiredCapabilities: jsonwpCaps // JSONWP compliant
-        }
+        requestOptions
     )
 
     let response

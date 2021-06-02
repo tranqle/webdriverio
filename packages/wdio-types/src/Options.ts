@@ -101,6 +101,11 @@ export interface WebDriver extends Connection {
      * ```
      */
     capabilities: W3CCapabilities | DesiredCapabilities
+     /**
+     * Same of capabilities, support for mjsonwp session
+     *
+     */
+    desiredCapabilities: W3CCapabilities | DesiredCapabilities
     /**
      * Level of logging verbosity.
      *
