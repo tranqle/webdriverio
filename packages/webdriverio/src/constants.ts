@@ -133,7 +133,7 @@ export const WDIO_DEFAULTS: Options.Definition<Options.WebdriverIO & Options.Tes
                 if (typeof option === 'object') { // Check does not work recursively
                     continue
                 }
-                throw new Error('expected every item of a list of desiredCapabilities to be of type object');
+                throw new Error('expected every item of a list of desiredCapabilities to be of type object')
             }
             return true
         },
