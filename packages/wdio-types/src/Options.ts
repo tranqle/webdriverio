@@ -100,12 +100,12 @@ export interface WebDriver extends Connection {
      * })
      * ```
      */
-    capabilities: W3CCapabilities | DesiredCapabilities
+    capabilities?: W3CCapabilities | DesiredCapabilities
      /**
      * Same of capabilities, support for mjsonwp session
      *
      */
-    desiredCapabilities: W3CCapabilities | DesiredCapabilities
+    desiredCapabilities?: W3CCapabilities | DesiredCapabilities
     /**
      * Level of logging verbosity.
      *
@@ -233,7 +233,10 @@ export interface WebdriverIO extends Omit<WebDriver, 'capabilities'> {
      * })
      * ```
      */
-    capabilities: RemoteCapability
+    capabilities?: RemoteCapability
+
+    desiredCapabilities?: RemoteCapability
+
     /**
      * Define the protocol you want to use for your browser automation.
      * Currently only [`webdriver`](https://www.npmjs.com/package/webdriver) and
@@ -311,7 +314,9 @@ export interface Testrunner extends Hooks, Omit<WebdriverIO, 'capabilities'>, We
      * })
      * ```
      */
-    capabilities: RemoteCapabilities
+    capabilities?: RemoteCapabilities
+
+    desiredCapabilities?: RemoteCapability
     /**
      * Type of runner (currently only "local" is supported)
      */
@@ -430,7 +435,8 @@ export interface AutoCompileConfig {
 }
 
 export interface MultiRemote extends Omit<Testrunner, 'capabilities'> {
-    capabilities: MultiRemoteCapabilities
+    capabilities?: MultiRemoteCapabilities
+    desiredCapabilities?: MultiRemoteCapabilities
 }
 
 export type Definition<T> = {
@@ -451,6 +457,7 @@ export interface RunnerStart {
     instanceOptions: Record<string, WebdriverIO>
     sessionId: string
     capabilities: Capabilities
+    desiredCapabilities: Capabilities
     retry?: number
     failures?: number
     retries?: number

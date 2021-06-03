@@ -3,10 +3,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "build",
-    "rootDir": "src"
+    "rootDir": "../"
   },
   "include": [
-    "src/**/*",
-    "../../node_modules/@types"
+    "../../node_modules/@types",
+    "../wdio-types/src/*"
   ]
 }

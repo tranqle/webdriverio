@@ -62,15 +62,13 @@ export const DEFAULTS: Options.Definition<Required<Options.WebDriver>> = {
      * capability of w3c session
      */
     capabilities: {
-        type: 'object',
-        required: false
+        type: 'object'
     },
     /**
      * desiredCapability of mjsonwp session
      */
     desiredCapabilities: {
-        type: 'object',
-        required: false
+        type: 'object'
     },
     /**
      * Level of logging verbosity

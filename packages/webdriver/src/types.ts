@@ -24,6 +24,8 @@ export interface BaseClient extends EventEmitter, SessionFlags {
     sessionId: string
     // assigned capabilities by the browser driver / WebDriver server
     capabilities: Capabilities.DesiredCapabilities | Capabilities.W3CCapabilities
+    // assigned capabilities by the browser driver / WebDriver server
+    desiredCapabilities: Capabilities.DesiredCapabilities | Capabilities.W3CCapabilities
     // original requested capabilities
     requestedCapabilities: Capabilities.DesiredCapabilities | Capabilities.W3CCapabilities
     // framework options

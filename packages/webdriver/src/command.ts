@@ -60,7 +60,6 @@ export default function (
                 if (typeof arg === 'undefined' && !commandParam.required) {
                     continue
                 }
-
                 const actual = commandParam.type.endsWith('[]')
                     ? `(${(Array.isArray(arg) ? arg : [arg]).map((a) => getArgumentType(a))})[]`
                     : getArgumentType(arg)

@@ -46,6 +46,13 @@ export async function startWebDriverSession (params: Options.WebDriver): Promise
             )
         }
     }
+    /**
+     * validate to make sure capabilities or desiredCapabilities must be defined
+     *
+     */
+    if (typeof params.capabilities === 'undefined' && typeof params.desiredCapabilities === 'undefined') {
+        throw new Error('Neither capabilities or desiredCapabilities has been defined')
+    }
 
     /**
      * the user could have passed in either w3c style or jsonwp style caps
